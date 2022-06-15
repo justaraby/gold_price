@@ -1,6 +1,6 @@
 <?php
 // curl AED
-function get_price_aed($number){
+function get_price_aed(){
     $curl = curl_init();
 
     curl_setopt_array($curl, array(
@@ -25,11 +25,11 @@ function get_price_aed($number){
     $ounce = $result['result'];
 
     $gram = ($ounce/31.1034768)/24;
-    return ($gram*$number);
+    return $gram;
 }
 
 
-
+$ounce = get_price_aed();
 //$gram_aed = get_price_aed();
 //$gram_usd = get_price('USD');
 
@@ -84,22 +84,22 @@ function get_price_aed($number){
 	<tbody>
 	<tr>
 		<th>اسعار الذهب عيار 24</th>
-		<td><?php echo get_price_aed(24); ?> درهم</td>
+		<td><?php echo $ounce * 24 ; ?> درهم</td>
 		<td>$58.92</td>
 	</tr>
 	<tr>
 		<th>سعر الذهب عيار 22</th>
-		<td><?php echo get_price_aed(22); ?> درهم</td>
+		<td><?php echo $ounce * 22 ; ?> درهم</td>
 		<td>$54.01</td>
 	</tr>
 	<tr>
 		<th>اسعار الذهب عيار 21</th>
-		<td><?php echo get_price_aed(21); ?> درهم</td>
+		<td><?php echo $ounce * 21; ?> درهم</td>
 		<td>$51.55</td>
 	</tr>
 	<tr>
 		<th>اسعار الذهب عيار 18</th>
-		<td><?php echo get_price_aed(18); ?> درهم</td>
+		<td><?php echo $ounce * 18; ?> درهم</td>
 		<td>$44.19</td>
 	</tr>
 	<tr>
@@ -109,22 +109,22 @@ function get_price_aed($number){
 	</tr>
 	<tr>
 		<th>سعر الذهب عيار 12</th>
-		<td><?php echo get_price_aed(12); ?> درهم</td>
+		<td><?php echo $ounce * 12; ?> درهم</td>
 		<td>$29.46</td>
 	</tr>
 	<tr>
 		<th><b>اسعار أوقية الذهب</b></th>
-		<td> درهم</td>
+		<td><?php echo $ounce;?> درهم</td>
 		<td>$1,832</td>
 	</tr>
 	<tr>
 		<th>اسعار جنيه الذهب</th>
-		<td><?php echo (get_price_aed(24)*7); ?> درهم</td>
+		<td><?php echo ($ounce*24*7); ?> درهم</td>
 		<td>-----</td>
 	</tr>
 	<tr>
 		<th>اسعار كيلو الذهب</th>
-		<td><?php echo (get_price_aed(24)*1000); ?> درهم</td>
+		<td><?php echo ($ounce*24*1000); ?> درهم</td>
 		<td>$58,916</td>
 	</tr>
 	</tbody>
