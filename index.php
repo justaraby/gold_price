@@ -29,7 +29,13 @@ function get_price_aed(){
 }
 
 
-$ounce = get_price_aed();
+$cached_price = get_transient( 'gold_price' );
+if ( $cached_price == false ) {
+	$gram_price = get_price_aed();
+	set_transient( 'gold_price', $ounce ,360); // cache for 6 hours
+}else{
+	$gram_price = $cached_price;
+}
 //$gram_aed = get_price_aed();
 //$gram_usd = get_price('USD');
 
@@ -84,47 +90,47 @@ $ounce = get_price_aed();
 	<tbody>
 	<tr>
 		<th>اسعار الذهب عيار 24</th>
-		<td><?php echo $ounce * 24 ; ?> درهم</td>
+		<td><?php echo $gram_price * 24 ; ?> درهم</td>
 		<td>$58.92</td>
 	</tr>
 	<tr>
 		<th>سعر الذهب عيار 22</th>
-		<td><?php echo $ounce * 22 ; ?> درهم</td>
+		<td><?php echo $gram_price * 22 ; ?> درهم</td>
 		<td>$54.01</td>
 	</tr>
 	<tr>
 		<th>اسعار الذهب عيار 21</th>
-		<td><?php echo $ounce * 21; ?> درهم</td>
+		<td><?php echo $gram_price * 21; ?> درهم</td>
 		<td>$51.55</td>
 	</tr>
 	<tr>
 		<th>اسعار الذهب عيار 18</th>
-		<td><?php echo $ounce * 18; ?> درهم</td>
+		<td><?php echo $gram_price * 18; ?> درهم</td>
 		<td>$44.19</td>
 	</tr>
 	<tr>
 		<th>سعر الذهب عيار 14</th>
-		<td><?php echo get_price_aed(14); ?> درهم</td>
+		<td><?php echo $gram_price * 14; ?> درهم</td>
 		<td>$34.37</td>
 	</tr>
 	<tr>
 		<th>سعر الذهب عيار 12</th>
-		<td><?php echo $ounce * 12; ?> درهم</td>
+		<td><?php echo $gram_price * 12; ?> درهم</td>
 		<td>$29.46</td>
 	</tr>
 	<tr>
 		<th><b>اسعار أوقية الذهب</b></th>
-		<td><?php echo $ounce;?> درهم</td>
+		<td><?php echo $gram_price*24*31.1034768;?> درهم</td>
 		<td>$1,832</td>
 	</tr>
 	<tr>
 		<th>اسعار جنيه الذهب</th>
-		<td><?php echo ($ounce*24*7); ?> درهم</td>
+		<td><?php echo ($gram_price*24*7); ?> درهم</td>
 		<td>-----</td>
 	</tr>
 	<tr>
 		<th>اسعار كيلو الذهب</th>
-		<td><?php echo ($ounce*24*1000); ?> درهم</td>
+		<td><?php echo ($gram_price*24*1000); ?> درهم</td>
 		<td>$58,916</td>
 	</tr>
 	</tbody>
